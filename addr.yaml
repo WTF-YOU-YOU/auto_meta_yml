@@ -1,0 +1,10 @@
+# Clash Meta 订阅链接配置
+# 在 urls 列表中添加或删除订阅链接即可
+
+urls:
+  - https://raw.githubusercontent.com/telegeam/freenode/refs/heads/master/clash.yaml
+  - https://gist.githubusercontent.com/anaer/f0ba4dda0c0e106c9497bad193d9d3d9/raw/SUB0.yaml
+  - https://raw.githubusercontent.com/vxiaov/free_proxies/main/clash/clash.provider.yaml
+  - https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml
+  - https://fastly.jsdelivr.net/gh/chengaopan/AutoMergePublicNodes@master/list.meta.yml
+  - https://raw.githubusercontent.com/shaoyouvip/free/main/mihomo.yaml
