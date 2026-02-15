@@ -1,0 +1,45 @@
+name: 每日更新订阅节点
+
+# 触发条件：每日北京时间凌晨 1:00（UTC 17:00）+ 支持手动触发
+on:
+  schedule:
+    - cron: '0 17 * * *'   # UTC 17:00 = 北京时间次日 01:00
+  workflow_dispatch:         # 允许在 GitHub 页面手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # 允许推送提交到仓库
+
+    steps:
+      # 1. 拉取代码
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. 安装 Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 3. 安装依赖
+      - name: Install dependencies
+        run: pip install requests pyyaml
+
+      # 4. 运行脚本生成 outcome.meta.yml
+      - name: Run fetch_proxies
+        run: python fetch_proxies.py
+
+      # 5. 提交并推送更新后的 outcome.meta.yml
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add outcome.meta.yml
+          if git diff --cached --quiet; then
+            echo "没有变化，跳过提交"
+          else
+            git commit -m "auto: 更新订阅节点 $(date -u +%Y-%m-%d)"
+            git push
+          fi

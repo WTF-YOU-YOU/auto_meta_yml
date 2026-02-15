@@ -3,9 +3,6 @@ __pycache__/
 *.pyc
 *.pyo
 
-# 输出文件 (每次运行动态生成)
-outcome.meta.yml
-
 # 样本文件
 list.meta.yml
 
