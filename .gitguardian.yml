@@ -1,0 +1,6 @@
+# GitGuardian 配置
+# outcome.meta.yml 中的 password 字段是公开免费代理节点的协议认证参数，非私密凭证
+
+paths-ignore:
+  - "outcome.meta.yml"
+  - "list.meta.yml"
